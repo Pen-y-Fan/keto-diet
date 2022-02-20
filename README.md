@@ -213,9 +213,10 @@ MIT License (MIT). Please see [License File](LICENSE.md) for more information.
     - [x] IDE Helper
     - [x] Debugbar
     - [x] .editorconfig
-- [ ] Install Filament admin
-- [ ] App outline, a user can:
+- [x] Install Filament admin
+- [ ] App outline, a user can: 
     - [ ] enter their meal
+        - [ ] add food to a meal 
     - [ ] view their meals
     - [ ] view a graph of their calories
     - [ ] amend their meals
