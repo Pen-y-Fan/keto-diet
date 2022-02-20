@@ -1,8 +1,12 @@
 {
-    "name": "laravel/laravel",
+    "name": "pen-y-fan/keto-diet",
     "type": "project",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "description": "Keto diet laravel app.",
+    "keywords": [
+        "laravel",
+        "keto",
+        "diet"
+    ],
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
@@ -13,12 +17,22 @@
         "laravel/tinker": "^2.7"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.6",
+        "barryvdh/laravel-ide-helper": "^2.12",
+        "canvural/phpstan-blade-rule": "^0.3.0",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^6.1",
+        "nunomaduro/larastan": "^2.0",
+        "php-parallel-lint/php-console-highlighter": "^1.0",
+        "php-parallel-lint/php-parallel-lint": "^1.3",
+        "phpro/grumphp-shim": "^1.8",
+        "phpstan/phpstan-phpunit": "^1.0",
         "phpunit/phpunit": "^9.5.10",
-        "spatie/laravel-ignition": "^1.0"
+        "spatie/laravel-ignition": "^1.0",
+        "symplify/easy-coding-standard": "^10.0",
+        "symplify/phpstan-extensions": "^10.0"
     },
     "autoload": {
         "psr-4": {
@@ -38,13 +52,28 @@
             "@php artisan package:discover --ansi"
         ],
         "post-update-cmd": [
-            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force",
+            "@php artisan ide-helper:generate",
+            "@php artisan ide-helper:meta"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "grumphp": "grumphp run",
+        "check-cs": "ecs check --ansi",
+        "fix-cs": "ecs check --fix --ansi",
+        "lint": "parallel-lint --exclude .git --exclude node_modules --exclude storage --exclude vendor .",
+        "phpstan": "phpstan analyse --error-format symplify --ansi",
+        "tests": "phpunit --testdox",
+        "ide": "@php artisan ide-helper:models -W",
+        "all": [
+            "@phpstan",
+            "@lint",
+            "@tests",
+            "@check-cs"
         ]
     },
     "extra": {

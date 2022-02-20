@@ -203,12 +203,16 @@ welcome to fork or clone for your own use.
 
 MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
-## ToDo
+## TODO
 
-- [ ] Install tooling
-    - [ ] Commit hook (GrumPHP)
-    - [ ] Static analysis (Larasan)
-    - [ ] Code standard (ECS)
+- [x] Install tooling
+    - [x] Commit hook (GrumPHP)
+    - [x] Linting (Parallel Lint)
+    - [x] Static analysis (Larasan)
+    - [x] Code standard (ECS)
+    - [x] IDE Helper
+    - [x] Debugbar
+    - [x] .editorconfig
 - [ ] Install Filament admin
 - [ ] App outline, a user can:
     - [ ] enter their meal

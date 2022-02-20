@@ -1,0 +1,38 @@
+includes:
+    - vendor/nunomaduro/larastan/extension.neon
+    - vendor/phpstan/phpstan-phpunit/extension.neon
+    - vendor/symplify/phpstan-extensions/config/config.neon
+    # use with canvural/phpstan-blade-rule
+    - vendor/canvural/phpstan-blade-rule/config/extension.neon
+    - vendor/symplify/template-phpstan-compiler/config/services.neon
+    - vendor/symplify/astral/config/services.neon
+
+parameters:
+    templatePaths:
+        - resources/views
+    paths:
+        - app
+        - database
+        - tests
+
+    # The level 9 is the highest level
+    level: max
+
+    ignoreErrors:
+        - message: '#Cannot access property \$id on mixed#'
+          path: app/Providers/RouteServiceProvider.php
+
+        # - '#PHPDoc tag @var#'
+        # - message: '#Call to an undefined method Illuminate\\Database\\Schema\\ForeignIdColumnDefinition\:\:cascadeOnUpdate\(\)#'
+        #   paths:
+        #     - database\migrations\2021_11_23_224617_create_films_table.php
+
+    excludePaths:
+        - ./config/*
+        - ./ecs.php
+        - ./routes/console.php
+        # - ./database/factories/*
+        # - ./database/seeders/*
+        # - ./*/*/FileToBeExcluded.php
+
+    checkMissingIterableValueType: false

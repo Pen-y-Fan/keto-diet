@@ -1,0 +1,21 @@
+grumphp:
+  tasks:
+    phplint:
+      exclude: [ .git, node_modules, vendor ]
+      jobs: ~
+      short_open_tag: false
+      ignore_patterns: [ ]
+      triggered_by: [ 'php', 'phtml', 'php3', 'php4', 'php5' ]
+    ecs:
+      files_on_pre_commit: false
+      triggered_by: [ 'php' ]
+      clear-cache: false
+      no-progress-bar: true
+    phpstan:
+      configuration: .\phpstan.neon
+      triggered_by: [ 'php' ]
+      ignore_patterns: [ ]
+      memory_limit: "-1"
+    phpunit:
+      always_execute: false
+      order: null
