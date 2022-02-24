@@ -38,6 +38,8 @@ use Laravel\Sanctum\HasApiTokens;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Food[] $foods
+ * @property-read int|null $foods_count
  */
 class User extends Authenticatable implements FilamentUser
 {
@@ -69,8 +71,21 @@ class User extends Authenticatable implements FilamentUser
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<Food>
+     */
+    public function foods(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Food::class);
+    }
+
     public function canAccessFilament(): bool
     {
-        return str_ends_with($this->email, '@example.com') && $this->hasVerifiedEmail();
+        return $this->isAdmin();
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->email === 'admin@example.com';
     }
 }

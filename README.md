@@ -15,7 +15,7 @@ The main features are:
 
 ## Local installation
 
-#### Requirements
+### Requirements
 
 This is a Laravel 9 project. The requirements are the same as a
 new [Laravel 9 project](https://laravel.com/docs/9.x/installation).
@@ -178,7 +178,22 @@ If PhpStan identifies any problems then review and fix them one by one.
 `git commit` any code ECS, PhpStan and PHPUnit will be automatically run, if any of these fail the commit will be
 rejected. You can always write a rule to bypass the failing code, but it is better to fix the problem.
 
-### Filament
+### Automatic PHPDocs for models
+
+barryvdh/laravel-ide-helper has been installed to help with IDE auto completion, when new models are created run the 
+following to auto generate doc blocks for all the models: 
+
+```shell
+php artisan ide-helper:models -W
+```
+
+Or for one specific model:
+
+```shell
+php artisan ide-helper:models -W "App\Models\Post" 
+```
+
+## Filament
 
 To access the Filament dashboard you will need to create a filament user:
 
@@ -208,7 +223,7 @@ MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 - [x] Install tooling
     - [x] Commit hook (GrumPHP)
     - [x] Linting (Parallel Lint)
-    - [x] Static analysis (Larasan)
+    - [x] Static analysis (Larastan)
     - [x] Code standard (ECS)
     - [x] IDE Helper
     - [x] Debugbar
