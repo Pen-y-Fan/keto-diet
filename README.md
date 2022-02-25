@@ -52,7 +52,7 @@ composer install
 Create an `.env` file from `.env.example`
 
 ```shell script
-composer post-root-package-install
+cp .env.example .env
 ```
 
 ### Generate APP_KEY
