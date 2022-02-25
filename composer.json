@@ -32,6 +32,7 @@
         "phpro/grumphp-shim": "^1.8",
         "phpstan/phpstan-phpunit": "^1.0",
         "phpunit/phpunit": "^9.5.10",
+        "roave/security-advisories": "dev-latest",
         "spatie/laravel-ignition": "^1.0",
         "symplify/easy-coding-standard": "^10.0",
         "symplify/phpstan-extensions": "^10.0"
