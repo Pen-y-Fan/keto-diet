@@ -96,29 +96,32 @@ exit
 php artisan migrate
 ```
 
-### Run tests
+## Jetstream
 
-To make it easy to run all the PHPUnit tests a composer script has been created in **composer.json**. From the root of
-the projects, run:
+The Laravel Jetstream starter package has been installed which includes Livewire and Tailwind. This provides the
+authentication for this package.
 
-```shell script
-composer tests
+### Initial install
+
+The first time the project is cloned the node packages will need to be installed
+
+```shell
+npm install
 ```
 
-You should see the results in testDoc format:
+### dev watch
 
-```text
-PHPUnit 9.5.13 by Sebastian Bergmann and contributors.
+To develop the package run the watcher
 
-Example (Tests\Unit\Example)
- ✔ That true is true
-
-Example (Tests\Feature\Example)
- ✔ The application returns a successful response
-
-User (Tests\Feature\User)
- ✔ A user can be created
+```shell
+npm run watch
 ```
+
+## Tooling
+
+Development tooling has been provided to keep the package to a high standard, including tests, code standard (PSR-12 + 
+other standards), static analysis. Other tools like IDE helper help with auto-completion and debug bar helps identify 
+problems like N+1 issues and which route or blade is being using.
 
 ### Code standard
 
@@ -178,10 +181,45 @@ If PhpStan identifies any problems then review and fix them one by one.
 `git commit` any code ECS, PhpStan and PHPUnit will be automatically run, if any of these fail the commit will be
 rejected. You can always write a rule to bypass the failing code, but it is better to fix the problem.
 
-### Automatic PHPDocs for models
+### Run tests
 
-barryvdh/laravel-ide-helper has been installed to help with IDE auto completion, when new models are created run the 
-following to auto generate doc blocks for all the models: 
+To make it easy to run all the PHPUnit tests a composer script has been created in **composer.json**. From the root of
+the projects, run:
+
+```shell script
+composer tests
+```
+
+You should see the results in testDoc format:
+
+```text
+PHPUnit 9.5.13 by Sebastian Bergmann and contributors.
+> phpunit --testdox
+
+Example (Tests\Unit\Example)
+ ✔ That true is true
+
+Api Token Permissions (Tests\Feature\ApiTokenPermissions)
+ ↩ Api token permissions can be updated
+
+Authentication (Tests\Feature\Authentication)
+ ✔ Login screen can be rendered
+ ✔ Users can authenticate using the login screen
+ ✔ Users can not authenticate with invalid password
+
+....
+
+Registration (Tests\Feature\Registration)
+ ↩ Registration screen cannot be rendered if support is disabled
+OK, but incomplete, skipped, or risky tests!
+Tests: 35, Assertions: 73, Skipped: 7.
+```
+
+### Automatic PHPDocs
+
+To help IDE autocompletion automatic PHPDocs for models are created using barryvdh/laravel-ide-helper, which has been 
+installed to help with IDE auto-completion, when new models are created run the following to auto generate doc blocks 
+for all the models: 
 
 ```shell
 php artisan ide-helper:models -W
@@ -193,15 +231,22 @@ Or for one specific model:
 php artisan ide-helper:models -W "App\Models\Post" 
 ```
 
-## Filament
+## Filament admin
 
-To access the Filament dashboard you will need to create a filament user:
+The [Filament admin](https://filamentphp.com/) has been installed to all the data in all the models. To access the 
+Filament dashboard you will need to create a filament user:
 
 ```shell
 php artisan make:filament-user
 ```
 
-Follow the prompts for name, email and password
+The user is currently hard coded in the **User** model to:
+
+```shell
+name: any name
+email: admin@example.com
+password: your password
+```
 
 Once created navigate to: /admin and login. You will see the admin portal.
 
@@ -229,11 +274,12 @@ MIT License (MIT). Please see [License File](LICENSE.md) for more information.
     - [x] Debugbar
     - [x] .editorconfig
 - [x] Install Filament admin
+- [x] Install Jetstream and Livewire
 - [ ] App outline, a user can: 
-    - [ ] enter their meal
-        - [ ] add food to a meal 
-    - [ ] view their meals
-    - [ ] view a graph of their calories
+    - [ ] view a daily diary
+    - [ ] add food to a meal 
+    - [ ] view their meals (daily diary)
+    - [ ] view a graph of their calories (dashboard)
     - [ ] amend their meals
     - [ ] delete their meal
     - [ ] set their weight goal

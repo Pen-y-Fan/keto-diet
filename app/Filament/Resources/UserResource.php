@@ -8,10 +8,15 @@ use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
 use Filament\Forms;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
-use Filament\Tables;
+use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\Filter;
 use Illuminate\Database\Eloquent\Builder;
 
 class UserResource extends Resource
@@ -26,15 +31,11 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
+                TextInput::make('name')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('email')
+                TextInput::make('email')
                     ->email()
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('password')
-                    ->password()
                     ->required()
                     ->maxLength(255),
             ]);
@@ -44,13 +45,13 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
+                TextColumn::make('name')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('email')
+                TextColumn::make('email')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\IconColumn::make('email_verified_at')
+                IconColumn::make('email_verified_at')
                     ->label('email verified')
                     ->options([
                         'heroicon-o-badge-check' => fn ($state): bool => $state !== null,
@@ -60,17 +61,17 @@ class UserResource extends Resource
                         'success' => fn ($state): bool => $state !== null,
                         'danger'  => fn ($state): bool  => $state === null,
                     ]),
-                Tables\Columns\TextColumn::make('created_at')
+                TextColumn::make('created_at')
                     ->label('User created')
                     ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
+                TextColumn::make('updated_at')
                     ->label('Last updated')
                     ->dateTime(),
             ])
             ->filters([
-                Tables\Filters\Filter::make('verified_created_updated')
+                Filter::make('verified_created_updated')
                     ->form([
-                        Forms\Components\Select::make('email_verified')
+                        Select::make('email_verified')
                             ->options([
                                 'all' => 'All',
                                 'yes' => 'Verified',
@@ -78,13 +79,13 @@ class UserResource extends Resource
                             ])
                             ->default('all'),
 
-                        Forms\Components\DatePicker::make('created_from')
+                        DatePicker::make('created_from')
                             ->placeholder(fn ($state): string => 'Dec 18, ' . now()->subYear()->format('Y')),
-                        Forms\Components\DatePicker::make('created_until')
+                        DatePicker::make('created_until')
                             ->placeholder(fn ($state): string => now()->format('M d, Y')),
-                        Forms\Components\DatePicker::make('update_from')
+                        DatePicker::make('update_from')
                             ->placeholder(fn ($state): string => 'Dec 18, ' . now()->subYear()->format('Y')),
-                        Forms\Components\DatePicker::make('update_until')
+                        DatePicker::make('update_until')
                             ->placeholder(fn ($state): string => now()->format('M d, Y')),
                     ])
                     ->query(function (Builder $query, array $data): Builder {
@@ -128,9 +129,8 @@ class UserResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index'  => Pages\ListUsers::route('/'),
-            'create' => Pages\CreateUser::route('/create'),
-            'edit'   => Pages\EditUser::route('/{record}/edit'),
+            'index' => Pages\ListUsers::route('/'),
+            'edit'  => Pages\EditUser::route('/{record}/edit'),
         ];
     }
 }

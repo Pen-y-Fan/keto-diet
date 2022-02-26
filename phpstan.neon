@@ -14,6 +14,7 @@ parameters:
         - app
         - database
         - tests
+        - routes
 
     # The level 9 is the highest level (max)
     level: max
@@ -28,10 +29,13 @@ parameters:
         - message: '#Parameter \#3 \$value of method Illuminate\\Database\\Eloquent\\Builder<Illuminate\\Database\\Eloquent\\Model>\:\:whereDate\(\) expects DateTimeInterface\|string\|null, mixed given#'
           path: app/Filament/Resources/UserResource.php
 
-        # - '#PHPDoc tag @var#'
-        # - message: '#Call to an undefined method Illuminate\\Database\\Schema\\ForeignIdColumnDefinition\:\:cascadeOnUpdate\(\)#'
-        #   paths:
-        #     - database\migrations\2021_11_23_224617_create_films_table.php
+        # phpstan is confused by view()
+        - message: '#Parameter \#1 \(array\|string\|null\) of echo cannot be converted to string#'
+          paths:
+            - app/Http/Livewire/Weight.php
+            - app/Http/Livewire/Diary.php
+            - app/Http/Livewire/Dashboard.php
+            - routes/web.php
 
     excludePaths:
         - ./config/*
