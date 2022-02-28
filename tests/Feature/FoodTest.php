@@ -92,4 +92,74 @@ class FoodTest extends TestCase
         $this->assertSame($fred->foods->first()->name, $food->name);
         $this->assertSame('nice grub', $food->name);
     }
+
+    /**
+     * @throws \Exception
+     */
+    public function testAFoodCanBeForADay(): void
+    {
+        /** @var User $fred */
+        $fred = User::factory()->create([
+            'email' => 'fred@example.com',
+        ]);
+
+        /** @var Collection<int, Food> $food */
+        $food = Food::factory(2)->create(
+            [
+                'user_id' => $fred,
+                'date'    => Carbon::now()->toDateString(),
+            ]
+        );
+
+        /** @var Collection<int, Food> $todayFoods */
+        $todayFoods = $fred->foods()
+            ->forDate(Carbon::now())
+            ->get();
+
+        $this->assertCount(2, $todayFoods);
+
+        $this->assertSame($food[0]->name, $todayFoods[0]->name);
+        $this->assertSame($food[1]->name, $todayFoods[1]->name);
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function testAUserCanOnlySeeTheirFoods(): void
+    {
+        /** @var User $fred */
+        $fred = User::factory()->create([
+            'email' => 'fred@example.com',
+        ]);
+
+        /** @var User $jane */
+        $jane = User::factory()->create([
+            'email' => 'jane@example.com',
+        ]);
+
+        /** @var Collection<int, Food> $fredFoods */
+        $fredFoods = Food::factory(2)->create(
+            [
+                'user_id' => $fred,
+            ]
+        );
+
+        /** @var Collection<int, Food> $janeFoods */
+        $janeFoods = Food::factory(3)->create(
+            [
+                'user_id' => $jane,
+            ]
+        );
+
+        $getFredFoods = $fred->foods()->get();
+        $getJaneFoods = $jane->foods()->get();
+
+        $this->assertSame(5, Food::count('id'));
+        $this->assertCount(2, $getFredFoods);
+        $this->assertCount(3, $getJaneFoods);
+
+        $this->assertSame($janeFoods[0]->name, $getJaneFoods[0]->name);
+        $this->assertSame($fredFoods[0]->name, $getFredFoods[0]->name);
+        $this->assertNotSame($fredFoods[0]->name, $getJaneFoods[0]->name);
+    }
 }

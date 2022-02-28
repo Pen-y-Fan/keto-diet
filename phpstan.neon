@@ -33,9 +33,12 @@ parameters:
         - message: '#Parameter \#1 \(array\|string\|null\) of echo cannot be converted to string#'
           paths:
             - app/Http/Livewire/Weight.php
-            - app/Http/Livewire/Diary.php
             - app/Http/Livewire/Dashboard.php
             - routes/web.php
+
+        # phpstan is confused by tests, which are passing.
+        - message: '#Cannot access property \$name on App\\Models\\Food\|null#'
+          path: tests/Feature/FoodTest.php
 
     excludePaths:
         - ./config/*

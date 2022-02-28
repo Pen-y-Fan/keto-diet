@@ -62,6 +62,17 @@ class Food extends Model
     ];
 
     /**
+     * Scope a query to only include Food for a given date.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder<Food> $query
+     * @return \Illuminate\Database\Eloquent\Builder<\App\Models\Food>
+     */
+    public function scopeForDate(\Illuminate\Database\Eloquent\Builder $query, \Carbon\Carbon $date): \Illuminate\Database\Eloquent\Builder
+    {
+        return $query->where('date', '=', $date->toDateString());
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<User, Food>
      */
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo

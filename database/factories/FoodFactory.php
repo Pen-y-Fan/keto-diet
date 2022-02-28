@@ -20,12 +20,12 @@ class FoodFactory extends Factory
     public function definition(): array
     {
         return [
-            'name'     => $this->faker->name(),
+            'name'     => $this->faker->words(3, true),
             'calories' => $calories = random_int(1, 300),
             'carbs'    => random_int(1, $calories),
             'meal'     => array_rand(Meal::cases()),
             'user_id'  => User::factory()->create(),
-            'date'     => Carbon::now()->sub('days', random_int(1, 30)),
+            'date'     => Carbon::now()->sub('days', random_int(0, 30))->toDateString(),
         ];
     }
 }
