@@ -276,8 +276,8 @@ MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 - [x] Install Filament admin
 - [x] Install Jetstream and Livewire
 - [ ] App outline, a user can: 
-    - [ ] view a daily diary
-    - [ ] add food to a meal 
+    - [x] view a daily diary
+    - [ ] add food to a meal
     - [ ] view their meals (daily diary)
     - [ ] view a graph of their calories (dashboard)
     - [ ] amend their meals
@@ -287,3 +287,11 @@ MIT License (MIT). Please see [License File](LICENSE.md) for more information.
     - [ ] enter their weight
     - [ ] view a graph of their weight with goal
     - [ ] view a dashboard with useful information and graphs
+
+## Seeder
+
+To seed 10 foods today for user 1 run:
+
+```shell
+php artisan db:seed --class=FoodSeeder
+```

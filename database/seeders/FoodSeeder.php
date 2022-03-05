@@ -15,7 +15,8 @@ class FoodSeeder extends Seeder
     public function run(): void
     {
         \App\Models\Food::factory(10)->create([
-            'date' => Carbon::now()->startOfDay()->add('hours', 6),
+            'date'    => Carbon::now()->startOfDay()->add('hours', 6),
+            'user_id' => 1,
         ]);
     }
 }
