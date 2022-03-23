@@ -15,3 +15,11 @@ yarn-error.log
 /.vscode
 /.phpstorm.meta.php
 /_ide_helper.php
+/ps.bat
+/pu.bat
+/cc.bat
+/fc.bat
+/gr.bat
+/li.bat
+/ide.bat
+/all.bat

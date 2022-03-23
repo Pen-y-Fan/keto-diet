@@ -30,7 +30,7 @@ class FoodTest extends TestCase
                 'carbs'    => $food->carbs,
                 'meal'     => $food->meal,
                 'user_id'  => $food->user_id,
-                'date'     => $food->date,
+                'date'     => $food->date->format('Y-m-d'),
             ]
         );
     }
@@ -58,7 +58,7 @@ class FoodTest extends TestCase
                 'carbs'    => $food->carbs,
                 'meal'     => $food->meal,
                 'user_id'  => $fred->id,
-                'date'     => $food->date,
+                'date'     => $food->date->format('Y-m-d'),
             ]
         );
 

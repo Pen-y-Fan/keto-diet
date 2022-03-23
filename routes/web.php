@@ -28,6 +28,23 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/diary', function () {
 })->name('diary');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/weight', function () {
-    /** @phpstan-ignore-next-line  */
+    /** @phpstan-ignore-next-line */
     return view('weight');
 })->name('weight');
+
+Route::middleware(['auth:sanctum', 'verified'])
+    ->get('/diary/{food}/edit', function (\App\Models\Food $food) {
+        return view('edit-food', [
+            'food' => $food,
+        ]);
+    })
+    ->name('food.edit');
+
+Route::middleware(['auth:sanctum', 'verified'])
+    ->get('/diary/{meal}/{date}/add', function (int $meal, \Carbon\Carbon $date) {
+        return view('add-food', [
+            'meal' => $meal,
+            'date' => $date,
+        ]);
+    })
+    ->name('food.add');

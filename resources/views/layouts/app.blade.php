@@ -40,6 +40,7 @@
             </main>
         </div>
 
+{{--        @livewire('livewire-ui-modal')--}}
         @stack('modals')
     </body>
 </html>

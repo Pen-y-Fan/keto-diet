@@ -40,6 +40,13 @@ parameters:
         - message: '#Cannot access property \$name on App\\Models\\Food\|null#'
           path: tests/Feature/FoodTest.php
 
+        - message: '#Access to an undefined property App\\Http\\Livewire\\AddFood\:\:\$form#'
+          path: app/Http/Livewire/AddFood.php
+
+        - message: '#Method App\\Enum\\Meal\:\:description\(\) should return string but returns array\|string\|null#'
+          path: app/Enum/Meal.php
+
+
     excludePaths:
         - ./config/*
         - ./ecs.php

@@ -15,9 +15,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $name
  * @property int $calories
  * @property int $carbs
- * @property string $meal
+ * @property Meal $meal
  * @property int $user_id
- * @property string $date
+ * @property \Illuminate\Support\Carbon $date
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\User $user
@@ -59,6 +59,7 @@ class Food extends Model
      */
     protected $casts = [
         'meal' => Meal::class,
+        'date' => 'datetime:Y-m-d',
     ];
 
     /**
@@ -69,7 +70,8 @@ class Food extends Model
      */
     public function scopeForDate(\Illuminate\Database\Eloquent\Builder $query, \Carbon\Carbon $date): \Illuminate\Database\Eloquent\Builder
     {
-        return $query->where('date', '=', $date->toDateString());
+        return $query->where('date', '=', $date->format('Y-m-d'));
+//        return $query->where('date', '=', $date->toString());
     }
 
     /**

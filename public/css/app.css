@@ -2685,6 +2685,9 @@ select{
 .-mb-7{
   margin-bottom: -1.75rem;
 }
+.mb-5{
+  margin-bottom: 1.25rem;
+}
 .block{
   display: block;
 }
@@ -2849,6 +2852,24 @@ select{
 }
 .w-11{
   width: 2.75rem;
+}
+.w-1\/12{
+  width: 8.333333%;
+}
+.w-9\/12{
+  width: 75%;
+}
+.w-5\/12{
+  width: 41.666667%;
+}
+.w-2\/12{
+  width: 16.666667%;
+}
+.w-1\/6{
+  width: 16.666667%;
+}
+.w-6\/12{
+  width: 50%;
 }
 .min-w-0{
   min-width: 0px;
@@ -3486,6 +3507,18 @@ select{
 .bg-gray-500\/5{
   background-color: rgb(107 114 128 / 0.05);
 }
+.bg-violet-500{
+  --tw-bg-opacity: 1;
+  background-color: rgb(139 92 246 / var(--tw-bg-opacity));
+}
+.bg-blue-500{
+  --tw-bg-opacity: 1;
+  background-color: rgb(59 130 246 / var(--tw-bg-opacity));
+}
+.bg-green-300{
+  --tw-bg-opacity: 1;
+  background-color: rgb(134 239 172 / var(--tw-bg-opacity));
+}
 .bg-opacity-25{
   --tw-bg-opacity: 0.25;
 }
@@ -3677,6 +3710,12 @@ select{
 .pl-10{
   padding-left: 2.5rem;
 }
+.pb-10{
+  padding-bottom: 2.5rem;
+}
+.pr-3{
+  padding-right: 0.75rem;
+}
 .text-left{
   text-align: left;
 }
@@ -3685,6 +3724,9 @@ select{
 }
 .text-right{
   text-align: right;
+}
+.align-bottom{
+  vertical-align: bottom;
 }
 .font-sans{
   font-family: Nunito, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -4248,6 +4290,18 @@ select{
   --tw-bg-opacity: 1;
   background-color: rgb(199 210 254 / var(--tw-bg-opacity));
 }
+.hover\:bg-violet-600:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(124 58 237 / var(--tw-bg-opacity));
+}
+.hover\:bg-blue-600:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(37 99 235 / var(--tw-bg-opacity));
+}
+.hover\:bg-green-500:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(34 197 94 / var(--tw-bg-opacity));
+}
 .hover\:text-gray-500:hover{
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
@@ -4543,6 +4597,18 @@ select{
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(191 219 254 / var(--tw-ring-opacity));
 }
+.focus\:ring-violet-300:focus{
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(196 181 253 / var(--tw-ring-opacity));
+}
+.focus\:ring-blue-300:focus{
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(147 197 253 / var(--tw-ring-opacity));
+}
+.focus\:ring-green-200:focus{
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(187 247 208 / var(--tw-ring-opacity));
+}
 .focus\:ring-opacity-50:focus{
   --tw-ring-opacity: 0.5;
 }
@@ -4579,6 +4645,18 @@ select{
 .active\:bg-gray-50:active{
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+}
+.active\:bg-violet-700:active{
+  --tw-bg-opacity: 1;
+  background-color: rgb(109 40 217 / var(--tw-bg-opacity));
+}
+.active\:bg-blue-700:active{
+  --tw-bg-opacity: 1;
+  background-color: rgb(29 78 216 / var(--tw-bg-opacity));
+}
+.active\:bg-green-600:active{
+  --tw-bg-opacity: 1;
+  background-color: rgb(22 163 74 / var(--tw-bg-opacity));
 }
 .active\:text-gray-700:active{
   --tw-text-opacity: 1;
@@ -5216,6 +5294,11 @@ select{
     margin-bottom: -1px;
   }
 
+  .sm\:my-8{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
   .sm\:ml-3{
     margin-left: 0.75rem;
   }
@@ -5248,6 +5331,10 @@ select{
     display: block;
   }
 
+  .sm\:inline-block{
+    display: inline-block;
+  }
+
   .sm\:flex{
     display: flex;
   }
@@ -5266,6 +5353,10 @@ select{
 
   .sm\:h-20{
     height: 5rem;
+  }
+
+  .sm\:h-screen{
+    height: 100vh;
   }
 
   .sm\:w-10{
@@ -5429,6 +5520,10 @@ select{
     padding: 1.5rem;
   }
 
+  .sm\:p-0{
+    padding: 0px;
+  }
+
   .sm\:px-6{
     padding-left: 1.5rem;
     padding-right: 1.5rem;
@@ -5468,6 +5563,10 @@ select{
 
   .sm\:text-right{
     text-align: right;
+  }
+
+  .sm\:align-middle{
+    vertical-align: middle;
   }
 
   .sm\:text-xl{
@@ -5563,6 +5662,22 @@ select{
 
   .md\:w-1\/2{
     width: 50%;
+  }
+
+  .md\:w-9\/12{
+    width: 75%;
+  }
+
+  .md\:w-1\/12{
+    width: 8.333333%;
+  }
+
+  .md\:w-10\/12{
+    width: 83.333333%;
+  }
+
+  .md\:w-3\/4{
+    width: 75%;
   }
 
   .md\:max-w-md{
