@@ -212,7 +212,7 @@ Authentication (Tests\Feature\Authentication)
 Registration (Tests\Feature\Registration)
  ↩ Registration screen cannot be rendered if support is disabled
 OK, but incomplete, skipped, or risky tests!
-Tests: 35, Assertions: 73, Skipped: 7.
+Tests: 52, Assertions: 139, Skipped: 7.
 ```
 
 ### Automatic PHPDocs
@@ -278,9 +278,9 @@ MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 - [ ] App outline, a user can: 
     - [x] view a daily diary
     - [x] add food to a meal
-    - [ ] view their meals (daily diary)
+    - [x] view their meals (daily diary)
     - [ ] view a graph of their calories (dashboard)
-    - [x] amend their food
+    - [x] edit their food
     - [x] delete their food
     - [ ] set their weight goal
     - [ ] set their Keto daily requirements (calories)

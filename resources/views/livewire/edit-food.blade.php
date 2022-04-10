@@ -19,7 +19,7 @@
         </form>
         <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6 shadow sm:rounded-bl-md sm:rounded-br-md">
             <button wire:click="$set('confirmingFoodDeletion', true)" wire:loading.attr="disabled" class="bg-danger-500 hover:bg-danger-600 focus:outline-none focus:ring focus:ring-danger-300 active:bg-danger-700 px-5 py-2 text-sm leading-5 rounded-full font-semibold text-white">
-                Delete
+                {{ __('Delete') }}
             </button>
         </div>
     </div>

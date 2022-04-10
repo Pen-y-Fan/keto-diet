@@ -8,7 +8,6 @@ use App\Enum\Meal;
 use App\Models\Food;
 use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 
 class Diary extends Component
@@ -17,7 +16,7 @@ class Diary extends Component
 
     public string $day = '';
 
-    public Carbon|null $date;
+    public Carbon|string|bool|null $date;
 
     /**
      * @var \Illuminate\Database\Eloquent\Collection<int, Food>
@@ -28,11 +27,13 @@ class Diary extends Component
 
     public int|null $totalCarbs;
 
-    public function mount(): void
+    public function mount(string $date): void
     {
-        $this->day = Carbon::now()->englishDayOfWeek;
-//        $this->date = $date ? Carbon::parse($date) : Carbon::now();
-        $this->date            = Carbon::now();
+        $this->date = Carbon::createFromFormat('Y-m-d', $date);
+        if (! ($this->date instanceof Carbon)) {
+            $this->date = now();
+        }
+
         $this->mealDescription = [
             Meal::Breakfast->value => Meal::Breakfast->description(),
             Meal::Lunch->value     => Meal::Lunch->description(),
@@ -40,16 +41,32 @@ class Diary extends Component
             Meal::Snack->value     => Meal::Snack->description(),
         ];
 
-        /** @var User $user */
-        $user                = auth()->user();
-        $this->diary         = $user->foods()->forDate($this->date)->get();
-        $this->totalCalories = $this->diary->sum->calories;
-        $this->totalCarbs    = $this->diary->sum->carbs;
+        $this->configureForDate();
     }
 
     public function render(): \Illuminate\View\View
     {
         /** @phpstan-ignore-next-line */
         return view('livewire.diary');
+    }
+
+    public function changeDate(int $days): void
+    {
+        $this->date = ($this->date instanceof Carbon) ? $this->date->addDays($days) : now();
+
+        $this->configureForDate();
+    }
+
+    private function configureForDate(): void
+    {
+        $this->date = ($this->date instanceof Carbon) ? $this->date : now();
+
+        $this->day = $this->date->format('l jS \\of F Y');
+
+        /** @var User $user */
+        $user                = auth()->user();
+        $this->diary         = $user->foods()->forDate($this->date)->get();
+        $this->totalCalories = $this->diary->sum->calories;
+        $this->totalCarbs    = $this->diary->sum->carbs;
     }
 }

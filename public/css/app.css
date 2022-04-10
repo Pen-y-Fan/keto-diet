@@ -2688,6 +2688,9 @@ select{
 .-mb-7{
   margin-bottom: -1.75rem;
 }
+.mb-3{
+  margin-bottom: 0.75rem;
+}
 .block{
   display: block;
 }
@@ -3702,6 +3705,9 @@ select{
 .pl-10{
   padding-left: 2.5rem;
 }
+.pb-5{
+  padding-bottom: 1.25rem;
+}
 .text-left{
   text-align: left;
 }
@@ -3747,6 +3753,10 @@ select{
 .text-3xl{
   font-size: 1.875rem;
   line-height: 2.25rem;
+}
+.text-4xl{
+  font-size: 2.25rem;
+  line-height: 2.5rem;
 }
 .font-medium{
   font-weight: 500;

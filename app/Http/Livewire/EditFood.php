@@ -42,7 +42,9 @@ class EditFood extends Component implements Forms\Contracts\HasForms
 
         $this->food->update($data);
 
-        $this->redirect(route('diary'));
+        $this->redirect(route('diary', [
+            'date' => $this->food->date->format('Y-m-d'),
+        ]));
     }
 
     public function deleteFood(): void
@@ -56,7 +58,9 @@ class EditFood extends Component implements Forms\Contracts\HasForms
 
         $this->food->delete();
 
-        $this->redirect(route('diary'));
+        $this->redirect(route('diary', [
+            'date' => $this->food->date->format('Y-m-d'),
+        ]));
     }
 
     public function render(): \Illuminate\Contracts\View\View

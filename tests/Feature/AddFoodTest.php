@@ -27,7 +27,7 @@ class AddFoodTest extends TestCase
         $this->actingAs($user)
             ->get(route('food.add', [
                 'meal' => $meal->value,
-                'date' => $date,
+                'date' => $date->format('Y-m-d'),
             ]))
             ->assertSeeLivewire('add-food');
     }
@@ -39,7 +39,7 @@ class AddFoodTest extends TestCase
 
         $this->get(route('food.add', [
             'meal' => $meal->value,
-            'date' => $date,
+            'date' => $date->format('Y-m-d'),
         ]))
             ->assertDontSeeLivewire('add-food')
             ->assertRedirect();
@@ -50,7 +50,7 @@ class AddFoodTest extends TestCase
         /** @var User $user */
         $user = User::factory()->create();
         $meal = Meal::Breakfast;
-        $date = now();
+        $date = now()->format('Y-m-d');
 
         Livewire::actingAs($user)
             ->test(AddFood::class, [
@@ -79,7 +79,7 @@ class AddFoodTest extends TestCase
         Livewire::actingAs($user)
             ->test(AddFood::class, [
                 'meal' => $meal->value,
-                'date' => $date,
+                'date' => $date->format('Y-m-d'),
             ])
             ->set('name', 'New name')
             ->set('calories', '100')
@@ -103,7 +103,7 @@ class AddFoodTest extends TestCase
 
         Livewire::test(AddFood::class, [
             'meal' => $meal->value,
-            'date' => $date,
+            'date' => $date->format('Y-m-d'),
         ])
             ->set('name', 'New name')
             ->set('calories', '100')

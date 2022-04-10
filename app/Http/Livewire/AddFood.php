@@ -33,7 +33,7 @@ class AddFood extends Component implements Forms\Contracts\HasForms
     public $carbs;
 
     /**
-     * @var Carbon
+     * @var Carbon|string
      */
     public $date;
 
@@ -47,9 +47,13 @@ class AddFood extends Component implements Forms\Contracts\HasForms
      */
     public ?Food $food;
 
-    public function mount(int $meal, Carbon $date): void
+    public function mount(int $meal, string $date): void
     {
-        $this->date = $date;
+        /** @var Carbon|false $parseDate */
+        $parseDate = Carbon::createFromFormat('Y-m-d', $date);
+        if (! ($parseDate instanceof Carbon)) {
+            $this->date = now();
+        }
         $this->meal = Meal::from($meal);
 
         $this->food = new Food();
@@ -70,14 +74,17 @@ class AddFood extends Component implements Forms\Contracts\HasForms
             abort(Response::HTTP_FORBIDDEN);
         }
 
-        $food = $this->food;
-        if (! ($food instanceof Food)) {
+        if (! ($this->food instanceof Food)) {
             abort(Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
         $data = $this->form->getState();
 
-        $food->create(
+        if (! ($this->date instanceof Carbon)) {
+            $this->date = now();
+        }
+
+        $this->food->create(
             array_merge(
                 $data,
                 [
@@ -87,18 +94,9 @@ class AddFood extends Component implements Forms\Contracts\HasForms
                 ]
             )
         );
-        $this->redirect(route('diary'));
-//        $this->closeModalWithEvents([
-//            Diary::getName() => [
-//                'addFoodEvent',
-//                [
-//                    $this->meal->value,
-//                    $data['name'],
-//                    $data['calories'],
-//                    $data['carbs'],
-//                ],
-//            ],
-//        ]);
+        $this->redirect(route('diary', [
+            'date' => $this->date->format('Y-m-d'),
+        ]));
     }
 
     public function render(): \Illuminate\Contracts\View\View

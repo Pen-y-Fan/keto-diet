@@ -23,8 +23,12 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/diary', function () {
-    return view('diary');
+Route::middleware(['auth:sanctum', 'verified'])->get('/diary/{date?}', function ($date = null) {
+    $date ??= now()->format('Y-m-d');
+
+    return view('diary', [
+        'date' => $date,
+    ]);
 })->name('diary');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/weight', function () {
@@ -41,7 +45,7 @@ Route::middleware(['auth:sanctum', 'verified'])
     ->name('food.edit');
 
 Route::middleware(['auth:sanctum', 'verified'])
-    ->get('/diary/{meal}/{date}/add', function (int $meal, \Carbon\Carbon $date) {
+    ->get('/diary/{meal}/{date}/add', function (int $meal, string $date) {
         return view('add-food', [
             'meal' => $meal,
             'date' => $date,
