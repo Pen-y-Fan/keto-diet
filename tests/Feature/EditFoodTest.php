@@ -119,4 +119,50 @@ class EditFoodTest extends TestCase
             'carbs'    => $food->carbs,
         ]);
     }
+
+    public function testEditFoodLivewireComponentWhenUserHasAuthorizationTheUserCanDeleteTheirFood(): void
+    {
+        /** @var User $user */
+        $user = User::factory()->create();
+        /** @var Food $food */
+        $food = Food::factory()->create([
+            'user_id' => $user->id,
+        ]);
+
+        $this->assertDatabaseCount(Food::class, 1);
+
+        Livewire::actingAs($user)
+            ->test(EditFood::class, [
+                'food' => $food,
+            ])
+            ->call('deleteFood');
+
+        $this->assertDatabaseCount(Food::class, 0);
+    }
+
+    public function testAnotherUserCanNotDeleteSomeoneElseFood(): void
+    {
+        /** @var User $foodOwner */
+        $foodOwner = User::factory()->create();
+        /** @var User $anotherUser */
+        $anotherUser = User::factory()->create();
+        /** @var Food $food */
+        $food = Food::factory()->create([
+            'user_id' => $foodOwner->id,
+        ]);
+
+        Livewire::actingAs($anotherUser)
+            ->test(EditFood::class, [
+                'food' => $food,
+            ])
+            ->call('deleteFood')
+            ->assertStatus(Response::HTTP_FORBIDDEN);
+
+        $this->assertDatabaseHas('food', [
+            'id'       => $food->id,
+            'name'     => $food->name,
+            'calories' => $food->calories,
+            'carbs'    => $food->carbs,
+        ]);
+    }
 }
