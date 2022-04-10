@@ -1,6 +1,6 @@
 # Keto diet
 
-This project concept is to design and built a small app which will record daily information about a keto diet. Based on
+This project concept is to design and build a small website which will record daily information about a keto diet. Based on
 MyFitnessPall, except much simpler and therefore easy to use. Accessible from any web connected device.
 [Filament PHP](https://filamentphp.com/) is used for the admin dashboard and authentication.
 
@@ -277,11 +277,11 @@ MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 - [x] Install Jetstream and Livewire
 - [ ] App outline, a user can: 
     - [x] view a daily diary
-    - [ ] add food to a meal
+    - [x] add food to a meal
     - [ ] view their meals (daily diary)
     - [ ] view a graph of their calories (dashboard)
-    - [ ] amend their meals
-    - [ ] delete their meal
+    - [x] amend their food
+    - [x] delete their food
     - [ ] set their weight goal
     - [ ] set their Keto daily requirements (calories)
     - [ ] enter their weight

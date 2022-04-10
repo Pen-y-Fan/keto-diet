@@ -13,6 +13,8 @@ class EditFood extends Component implements Forms\Contracts\HasForms
 {
     use Forms\Concerns\InteractsWithForms;
 
+    public bool $confirmingFoodDeletion = false;
+
     public ?Food $food;
 
     public function mount(Food $food): void
@@ -29,17 +31,30 @@ class EditFood extends Component implements Forms\Contracts\HasForms
 
     public function submit(): void
     {
-        $food = $this->food;
-        if (! ($food instanceof Food)) {
+        if (! ($this->food instanceof Food)) {
             abort(Response::HTTP_UNPROCESSABLE_ENTITY);
         }
-        if ($food->user_id !== auth()->id()) {
+        if ($this->food->user_id !== auth()->id()) {
             abort(Response::HTTP_FORBIDDEN);
         }
         /** @phpstan-ignore-next-line  */
         $data = $this->form->getState();
 
-        $food->update($data);
+        $this->food->update($data);
+
+        $this->redirect(route('diary'));
+    }
+
+    public function deleteFood(): void
+    {
+        if (! ($this->food instanceof Food)) {
+            abort(Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+        if ($this->food->user_id !== auth()->id()) {
+            abort(Response::HTTP_FORBIDDEN);
+        }
+
+        $this->food->delete();
 
         $this->redirect(route('diary'));
     }

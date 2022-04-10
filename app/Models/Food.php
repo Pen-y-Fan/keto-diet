@@ -25,6 +25,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Food newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Food newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Food query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Food forDate(\Carbon\Carbon $date)
  * @method static \Illuminate\Database\Eloquent\Builder|Food whereCalories($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Food whereCarbs($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Food whereCreatedAt($value)
@@ -71,7 +72,6 @@ class Food extends Model
     public function scopeForDate(\Illuminate\Database\Eloquent\Builder $query, \Carbon\Carbon $date): \Illuminate\Database\Eloquent\Builder
     {
         return $query->where('date', '=', $date->format('Y-m-d'));
-//        return $query->where('date', '=', $date->toString());
     }
 
     /**
