@@ -19,36 +19,41 @@ Route::middleware(['guest'])->get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::group([
+    'middleware' => ['auth:sanctum', 'verified'],
+], static function () {
+    Route::get('/dashboard', static function () {
+        /** @phpstan-ignore-next-line */
+        return view('dashboard');
+    })->name('dashboard');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/diary/{date?}', function ($date = null) {
-    $date ??= now()->format('Y-m-d');
+    Route::get('/diary/{date?}', static function ($date = null) {
+        $date ??= now()->format('Y-m-d');
+        /** @phpstan-ignore-next-line */
+        return view('diary', [
+            'date' => $date,
+        ]);
+    })->name('diary');
 
-    return view('diary', [
-        'date' => $date,
-    ]);
-})->name('diary');
+    Route::get('/weight', static function () {
+        /** @phpstan-ignore-next-line */
+        return view('weight');
+    })->name('weight');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/weight', function () {
-    /** @phpstan-ignore-next-line */
-    return view('weight');
-})->name('weight');
-
-Route::middleware(['auth:sanctum', 'verified'])
-    ->get('/diary/{food}/edit', function (\App\Models\Food $food) {
+    Route::get('/diary/{food}/edit', static function (\App\Models\Food $food) {
+        /** @phpstan-ignore-next-line */
         return view('edit-food', [
             'food' => $food,
         ]);
     })
-    ->name('food.edit');
+        ->name('food.edit');
 
-Route::middleware(['auth:sanctum', 'verified'])
-    ->get('/diary/{meal}/{date}/add', function (int $meal, string $date) {
+    Route::get('/diary/{meal}/{date}/add', static function (int $meal, string $date) {
+        /** @phpstan-ignore-next-line */
         return view('add-food', [
             'meal' => $meal,
             'date' => $date,
         ]);
     })
-    ->name('food.add');
+        ->name('food.add');
+});
