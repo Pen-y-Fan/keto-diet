@@ -23,25 +23,21 @@ Route::group([
     'middleware' => ['auth:sanctum', 'verified'],
 ], static function () {
     Route::get('/dashboard', static function () {
-        /** @phpstan-ignore-next-line */
         return view('dashboard');
     })->name('dashboard');
 
     Route::get('/diary/{date?}', static function ($date = null) {
         $date ??= now()->format('Y-m-d');
-        /** @phpstan-ignore-next-line */
         return view('diary', [
             'date' => $date,
         ]);
     })->name('diary');
 
     Route::get('/weight', static function () {
-        /** @phpstan-ignore-next-line */
         return view('weight');
     })->name('weight');
 
     Route::get('/diary/{food}/edit', static function (\App\Models\Food $food) {
-        /** @phpstan-ignore-next-line */
         return view('edit-food', [
             'food' => $food,
         ]);
@@ -49,7 +45,6 @@ Route::group([
         ->name('food.edit');
 
     Route::get('/diary/{meal}/{date}/add', static function (int $meal, string $date) {
-        /** @phpstan-ignore-next-line */
         return view('add-food', [
             'meal' => $meal,
             'date' => $date,

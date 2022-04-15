@@ -74,6 +74,7 @@ class EditFood extends Component implements Forms\Contracts\HasForms
         return [
             Forms\Components\TextInput::make('name')
                 ->required()
+                ->autofocus()
                 ->maxLength(255),
             Forms\Components\TextInput::make('calories')
                 ->required()
