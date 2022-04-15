@@ -12,8 +12,6 @@ use Livewire\Component;
 
 class Diary extends Component
 {
-    public array $mealDescription = [];
-
     public string $day = '';
 
     public Carbon|string|bool|null $date;
@@ -23,9 +21,9 @@ class Diary extends Component
      */
     public \Illuminate\Database\Eloquent\Collection $diary;
 
-    public int|null $totalCalories;
+    public int $totalCalories = 0;
 
-    public int|null $totalCarbs;
+    public int $totalCarbs = 0;
 
     public function mount(string $date): void
     {
@@ -33,13 +31,6 @@ class Diary extends Component
         if (! ($this->date instanceof Carbon)) {
             $this->date = now();
         }
-
-        $this->mealDescription = [
-            Meal::Breakfast->value => Meal::Breakfast->description(),
-            Meal::Lunch->value     => Meal::Lunch->description(),
-            Meal::Dinner->value    => Meal::Dinner->description(),
-            Meal::Snack->value     => Meal::Snack->description(),
-        ];
 
         $this->configureForDate();
     }

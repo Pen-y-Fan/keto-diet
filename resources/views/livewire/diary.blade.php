@@ -28,7 +28,7 @@
     @if($diary)
         <div>
             @foreach(\App\Enum\Meal::cases() as $meal)
-                <h3 class="font-semibold text-xl text-blue-900">{{ $mealDescription[$meal->value] }}</h3>
+                <h3 class="font-semibold text-xl text-blue-900">{{ $meal->name }}</h3>
                 @foreach($diary as $food)
                     @if( $food->meal === $meal)
                         <x-food-line :food="$food" :date="$date"/>
