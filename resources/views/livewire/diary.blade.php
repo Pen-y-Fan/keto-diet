@@ -17,8 +17,8 @@
         </div>
         <div class="flex">
             <div class="w-1/2 md:w-3/4"></div>
-            <div class="w-1/6 md:w-1/12"><p class="text-right">{{ $totalCalories }}</p></div>
-            <div class="w-1/6 md:w-1/12"><p class="text-right">{{ $totalCarbs }}</p></div>
+            <div class="w-1/6 md:w-1/12"><p class="text-right">{{ number_format($totalCalories) }}</p></div>
+            <div class="w-1/6 md:w-1/12"><p class="text-right">{{ number_format($totalCarbs) }}</p></div>
             <div class="w-1/6 md:w-1/12"><p class="text-right"></div>
         </div>
     </div>
@@ -35,7 +35,7 @@
                 <div class="flex items-center  p-2">
                     <div class="w-5/6 md:w-11/12"></div>
                     <div class="w-1/6 md:w-1/12 text-center">
-                        <a href="{{ route('food.add', ["meal" => $meal->value, "date" => $date->format('Y-m-d')]) }}" class="items-center text-center text-lg bg-blue-300 hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-100 active:bg-blue-400 p-1 text-sm leading-5 rounded-full font-semibold text-grey-800" title="{{ __('Add') . ' ' . $meal->name }}">
+                        <a href="{{ route('food.add', ["meal" => $meal->value, "date" => $date->format('Y-m-d')]) }}" class="items-center text-center text-lg bg-green-300 hover:bg-green-400 focus:outline-none focus:ring focus:ring-green-100 active:bg-green-400 p-1 text-sm leading-5 rounded-full font-semibold text-grey-800" title="{{ __('Add') . ' ' . $meal->name }}">
                             <div class="inline-block w-6 h-6">
                                 <span>
                                     &#xFF0B;{{-- full width plus sign --}}
