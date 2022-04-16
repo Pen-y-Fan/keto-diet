@@ -2573,13 +2573,13 @@ select{
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
 }
-.-my-2{
-  margin-top: -0.5rem;
-  margin-bottom: -0.5rem;
-}
 .my-3{
   margin-top: 0.75rem;
   margin-bottom: 0.75rem;
+}
+.-my-2{
+  margin-top: -0.5rem;
+  margin-bottom: -0.5rem;
 }
 .ml-3{
   margin-left: 0.75rem;
@@ -2683,6 +2683,9 @@ select{
 .-mt-px{
   margin-top: -1px;
 }
+.mb-3{
+  margin-bottom: 0.75rem;
+}
 .mt-12{
   margin-top: 3rem;
 }
@@ -2692,8 +2695,8 @@ select{
 .-mb-7{
   margin-bottom: -1.75rem;
 }
-.mb-3{
-  margin-bottom: 0.75rem;
+.mb-1{
+  margin-bottom: 0.25rem;
 }
 .block{
   display: block;
@@ -2857,14 +2860,17 @@ select{
 .w-1\/6{
   width: 16.666667%;
 }
+.w-5\/6{
+  width: 83.333333%;
+}
 .w-32{
   width: 8rem;
 }
 .w-11{
   width: 2.75rem;
 }
-.w-5\/6{
-  width: 83.333333%;
+.w-14{
+  width: 3.5rem;
 }
 .min-w-0{
   min-width: 0px;
@@ -3475,6 +3481,10 @@ select{
   --tw-bg-opacity: 1;
   background-color: rgb(244 63 94 / var(--tw-bg-opacity));
 }
+.bg-green-500{
+  --tw-bg-opacity: 1;
+  background-color: rgb(34 197 94 / var(--tw-bg-opacity));
+}
 .bg-transparent{
   background-color: transparent;
 }
@@ -3496,10 +3506,6 @@ select{
 .bg-blue-300{
   --tw-bg-opacity: 1;
   background-color: rgb(147 197 253 / var(--tw-bg-opacity));
-}
-.bg-violet-500{
-  --tw-bg-opacity: 1;
-  background-color: rgb(139 92 246 / var(--tw-bg-opacity));
 }
 .bg-danger-500\/10{
   background-color: rgb(244 63 94 / 0.1);
@@ -3566,14 +3572,14 @@ select{
 .p-0{
   padding: 0px;
 }
+.p-1{
+  padding: 0.25rem;
+}
 .p-5{
   padding: 1.25rem;
 }
 .p-8{
   padding: 2rem;
-}
-.p-1{
-  padding: 0.25rem;
 }
 .px-4{
   padding-left: 1rem;
@@ -4200,23 +4206,7 @@ select{
 .odd\:rounded-lg:nth-child(odd){
   border-radius: 0.5rem;
 }
-.odd\:rounded-r-lg:nth-child(odd){
-  border-top-right-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
-}
-.odd\:rounded-l-lg:nth-child(odd){
-  border-top-left-radius: 0.5rem;
-  border-bottom-left-radius: 0.5rem;
-}
 .odd\:bg-gray-50:nth-child(odd){
-  --tw-bg-opacity: 1;
-  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
-}
-.odd\:bg-gray-100:nth-child(odd){
-  --tw-bg-opacity: 1;
-  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
-}
-.even\:bg-gray-50:nth-child(even){
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
 }
@@ -4326,6 +4316,10 @@ select{
   --tw-bg-opacity: 1;
   background-color: rgb(107 114 128 / var(--tw-bg-opacity));
 }
+.hover\:bg-green-600:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(22 163 74 / var(--tw-bg-opacity));
+}
 .hover\:bg-indigo-200:hover{
   --tw-bg-opacity: 1;
   background-color: rgb(199 210 254 / var(--tw-bg-opacity));
@@ -4337,10 +4331,6 @@ select{
 .hover\:bg-blue-400:hover{
   --tw-bg-opacity: 1;
   background-color: rgb(96 165 250 / var(--tw-bg-opacity));
-}
-.hover\:bg-violet-600:hover{
-  --tw-bg-opacity: 1;
-  background-color: rgb(124 58 237 / var(--tw-bg-opacity));
 }
 .hover\:text-gray-500:hover{
   --tw-text-opacity: 1;
@@ -4645,6 +4635,10 @@ select{
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(253 164 175 / var(--tw-ring-opacity));
 }
+.focus\:ring-green-300:focus{
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(134 239 172 / var(--tw-ring-opacity));
+}
 .focus\:ring-green-200:focus{
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(187 247 208 / var(--tw-ring-opacity));
@@ -4652,10 +4646,6 @@ select{
 .focus\:ring-blue-100:focus{
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(219 234 254 / var(--tw-ring-opacity));
-}
-.focus\:ring-violet-300:focus{
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(196 181 253 / var(--tw-ring-opacity));
 }
 .focus\:ring-opacity-50:focus{
   --tw-ring-opacity: 0.5;
@@ -4702,6 +4692,10 @@ select{
   --tw-bg-opacity: 1;
   background-color: rgb(190 18 60 / var(--tw-bg-opacity));
 }
+.active\:bg-green-700:active{
+  --tw-bg-opacity: 1;
+  background-color: rgb(21 128 61 / var(--tw-bg-opacity));
+}
 .active\:bg-green-600:active{
   --tw-bg-opacity: 1;
   background-color: rgb(22 163 74 / var(--tw-bg-opacity));
@@ -4709,10 +4703,6 @@ select{
 .active\:bg-blue-400:active{
   --tw-bg-opacity: 1;
   background-color: rgb(96 165 250 / var(--tw-bg-opacity));
-}
-.active\:bg-violet-700:active{
-  --tw-bg-opacity: 1;
-  background-color: rgb(109 40 217 / var(--tw-bg-opacity));
 }
 .active\:text-gray-700:active{
   --tw-text-opacity: 1;

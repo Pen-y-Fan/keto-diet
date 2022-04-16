@@ -43,7 +43,7 @@ class AddFood extends Component implements Forms\Contracts\HasForms
     public $meal;
 
     /**
-     * @var Food
+     * @var ?Food
      */
     public ?Food $food;
 
@@ -60,6 +60,7 @@ class AddFood extends Component implements Forms\Contracts\HasForms
         /** @phpstan-ignore-next-line  */
         $this->food->date = $this->date;
         $this->food->meal = $this->meal;
+        $this->food->name = '';
 
         $this->form->fill([
             'name'     => $this->food->name,
@@ -110,6 +111,7 @@ class AddFood extends Component implements Forms\Contracts\HasForms
         return [
             Forms\Components\TextInput::make('name')
                 ->required()
+                ->autofocus()
                 ->maxLength(255),
             Forms\Components\TextInput::make('calories')
                 ->required()
