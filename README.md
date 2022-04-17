@@ -212,7 +212,7 @@ Authentication (Tests\Feature\Authentication)
 Registration (Tests\Feature\Registration)
  ↩ Registration screen cannot be rendered if support is disabled
 OK, but incomplete, skipped, or risky tests!
-Tests: 52, Assertions: 139, Skipped: 7.
+Tests: 53, Assertions: 142, Skipped: 7.
 ```
 
 ### Automatic PHPDocs
@@ -279,7 +279,7 @@ MIT License (MIT). Please see [License File](LICENSE.md) for more information.
     - [x] view a daily diary
     - [x] add food to a meal
     - [x] view their meals (daily diary)
-    - [ ] view a graph of their calories (dashboard)
+    - [x] view a graph of their calories (dashboard)
     - [x] edit their food
     - [x] delete their food
     - [ ] set their weight goal

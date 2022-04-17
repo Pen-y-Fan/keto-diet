@@ -32,6 +32,34 @@ class AddFoodTest extends TestCase
             ->assertSeeLivewire('add-food');
     }
 
+    public function testFoodCanBeAddedForAGivenDate(): void
+    {
+        /** @var User $user */
+        $user = User::factory()->create();
+
+        $meal = Meal::Breakfast;
+        $date = now()->subDays(3);
+
+        Livewire::actingAs($user)
+            ->test(AddFood::class, [
+                'meal' => $meal->value,
+                'date' => $date->format('Y-m-d'),
+            ])
+            ->set('name', 'New name')
+            ->set('calories', '100')
+            ->set('carbs', '50')
+            ->call('submit')
+            ->assertHasNoErrors();
+
+        $this->assertDatabaseHas('food', [
+            'meal'     => $meal->value,
+            'date'     => $date,
+            'name'     => 'New name',
+            'calories' => '100',
+            'carbs'    => '50',
+        ]);
+    }
+
     public function testDoesNotShowAddFoodLivewireComponentWhenUserDoesNotHaveAuthorization(): void
     {
         $meal = Meal::Breakfast;

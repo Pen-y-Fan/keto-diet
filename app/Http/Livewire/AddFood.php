@@ -11,36 +11,13 @@ use Filament\Forms;
 use Livewire\Component;
 use Symfony\Component\HttpFoundation\Response;
 
-//use LivewireUI\Modal\ModalComponent;
-
 class AddFood extends Component implements Forms\Contracts\HasForms
 {
     use Forms\Concerns\InteractsWithForms;
 
-    /**
-     * @var string
-     */
-    public $name;
+    public string|Carbon $date;
 
-    /**
-     * @var int
-     */
-    public $calories;
-
-    /**
-     * @var int
-     */
-    public $carbs;
-
-    /**
-     * @var Carbon|string
-     */
-    public $date;
-
-    /**
-     * @var Meal
-     */
-    public $meal;
+    public int|Meal $meal;
 
     /**
      * @var ?Food
@@ -50,17 +27,15 @@ class AddFood extends Component implements Forms\Contracts\HasForms
     public function mount(int $meal, string $date): void
     {
         /** @var Carbon|false $parseDate */
-        $parseDate = Carbon::createFromFormat('Y-m-d', $date);
-        if (! ($parseDate instanceof Carbon)) {
-            $this->date = now();
-        }
+        $parseDate  = Carbon::createFromFormat('Y-m-d', $date);
+        $this->date = ($parseDate instanceof Carbon) ? $parseDate : now();
+
         $this->meal = Meal::from($meal);
 
         $this->food = new Food();
         /** @phpstan-ignore-next-line  */
         $this->food->date = $this->date;
         $this->food->meal = $this->meal;
-        $this->food->name = '';
 
         $this->form->fill([
             'name'     => $this->food->name,
@@ -79,12 +54,11 @@ class AddFood extends Component implements Forms\Contracts\HasForms
             abort(Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
+        $this->date = ($this->date instanceof Carbon) ? $this->date : now();
+
         $data = $this->form->getState();
 
-        if (! ($this->date instanceof Carbon)) {
-            $this->date = now();
-        }
-
+        /** @noinspection StaticInvocationViaThisInspection */
         $this->food->create(
             array_merge(
                 $data,
@@ -95,6 +69,7 @@ class AddFood extends Component implements Forms\Contracts\HasForms
                 ]
             )
         );
+
         $this->redirect(route('diary', [
             'date' => $this->date->format('Y-m-d'),
         ]));

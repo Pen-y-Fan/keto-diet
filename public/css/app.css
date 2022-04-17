@@ -2698,6 +2698,9 @@ select{
 .mb-1{
   margin-bottom: 0.25rem;
 }
+.mb-2{
+  margin-bottom: 0.5rem;
+}
 .block{
   display: block;
 }
@@ -3727,6 +3730,9 @@ select{
 }
 .pl-10{
   padding-left: 2.5rem;
+}
+.pt-12{
+  padding-top: 3rem;
 }
 .text-left{
   text-align: left;
@@ -5817,6 +5823,10 @@ select{
 
   .md\:pb-5{
     padding-bottom: 1.25rem;
+  }
+
+  .md\:pt-2{
+    padding-top: 0.5rem;
   }
 
   .md\:text-3xl{
