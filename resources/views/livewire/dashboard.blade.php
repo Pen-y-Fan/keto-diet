@@ -9,7 +9,7 @@
                     <p class="mb-2"> {{ __('Calories per day is now dynamic!') }}</p>
                     <p> {{ __('The other graphs are still static for demonstration, they will be swapped out for real graphs in the future') }}</p>
                 </div>
-                <div class="flex flex-row flex-wrap flex-grow mt-2">
+                <div class="flex flex-row flex-wrap flex-grow $t-2">
 
                     <div class="w-full md:w-1/2 xl:w-1/3 p-6">
                         <!--Graph Card-->
@@ -23,7 +23,7 @@
                                     new Chart(document.getElementById("chartjs-7"), {
                                         "type": "bar",
                                         "data": {
-                                            "labels": [@foreach($caleriesPerDay as $day)'{{ $day['date']->format('l') }}',@endforeach],
+                                            "labels": [@foreach($caleriesPerDay as $day)'{{ $day['date'] }}',@endforeach],
                                             "datasets": [{
                                                 "label": "Calories",
                                                 "data": [@foreach($caleriesPerDay as $day){{ $day['totalCalories'] }},@endforeach],
@@ -192,9 +192,35 @@
 
 
                 </div>
+
+                <!-- calories -->
+                <div>
+                    <div class="visible md:invisible grid grid-cols-7 gap-1 mx-6">
+                        @foreach($caleriesPerDay as $dataPerDay)
+                            @if ($loop->iteration % 2 === 1 && $loop->iteration < 7)
+                                <div class="@if(!$loop->last)col-span-2 @endif">
+                                    <p>{{ $dataPerDay['date'] }}</p>
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
+                    <div class="invisible md:visible grid grid-cols-34  gap-1 mx-6">
+                        @foreach($caleriesPerDay as $dataPerDay)
+                            @if ($loop->iteration % 4 === 1)
+                                <div class="@if(!$loop->last)col-span-4 @else col-span-1 @endif">
+                                    <p>{{ $dataPerDay['date'] }}</p>
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
+                    <div class="grid grid-cols-7 md:grid-cols-34 gap-1 mb-6 mx-6">
+                        @foreach($caleriesPerDay as $dataPerDay)
+                            <div class="pb-[100%] text-center border rounded @if($dataPerDay['totalCalories'] > 1700) hover:bg-red-700 bg-red-500 @elseif($dataPerDay['totalCalories'] > 1500) hover:bg-amber-700 bg-amber-500 @elseif($dataPerDay['totalCalories'] === 0) bg-grey-200 @else hover:bg-green-700 bg-green-500 @endif @if( $dataPerDay['date'] === "Saturday" || $dataPerDay['date'] === "Sunday" ) opacity-50 @endif" title="{{ $dataPerDay['date'] }}: calories {{ number_format($dataPerDay['totalCalories']) }}"></div>
+                        @endforeach
+                    </div>
+                </div>
+                <!-- /calories -->
             </div>
         </section>
     </div>
-
-
 </div>

@@ -9,6 +9,9 @@ use Filament\Forms;
 use Livewire\Component;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * @property Forms\ComponentContainer $form
+ */
 class EditFood extends Component implements Forms\Contracts\HasForms
 {
     use Forms\Concerns\InteractsWithForms;
@@ -21,7 +24,6 @@ class EditFood extends Component implements Forms\Contracts\HasForms
     {
         $this->food = $food;
 
-        /** @phpstan-ignore-next-line */
         $this->form->fill([
             'name'     => $this->food->name,
             'calories' => $this->food->calories,
@@ -29,7 +31,10 @@ class EditFood extends Component implements Forms\Contracts\HasForms
         ]);
     }
 
-    public function submit(): void
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function submit()
     {
         if (! ($this->food instanceof Food)) {
             abort(Response::HTTP_UNPROCESSABLE_ENTITY);
@@ -37,13 +42,14 @@ class EditFood extends Component implements Forms\Contracts\HasForms
         if ($this->food->user_id !== auth()->id()) {
             abort(Response::HTTP_FORBIDDEN);
         }
-        /** @phpstan-ignore-next-line  */
         $data = $this->form->getState();
 
+        $returnDate = $this->food->date->format('Y-m-d');
         $this->food->update($data);
 
-        $this->redirect(route('diary', [
-            'date' => $this->food->date->format('Y-m-d'),
+        $this->banner('Successfully saved!');
+        return redirect(route('diary', [
+            'date' => $returnDate,
         ]));
     }
 
@@ -56,17 +62,28 @@ class EditFood extends Component implements Forms\Contracts\HasForms
             abort(Response::HTTP_FORBIDDEN);
         }
 
+        $returnDate = $this->food->date->format('Y-m-d');
         $this->food->delete();
 
+        $this->banner('Successfully deleted!', 'danger');
         $this->redirect(route('diary', [
-            'date' => $this->food->date->format('Y-m-d'),
+            'date' => $returnDate,
         ]));
     }
 
     public function render(): \Illuminate\Contracts\View\View
     {
-        /** @phpstan-ignore-next-line  */
+        /** @phpstan-ignore-next-line */
         return view('livewire.edit-food');
+    }
+
+    /**
+     * @noinspection NullPointerExceptionInspection
+     */
+    public function banner(string $message, string $style = 'success'): void
+    {
+        request()->session()->flash('flash.banner', $message);
+        request()->session()->flash('flash.bannerStyle', $style);
     }
 
     protected function getFormSchema(): array
