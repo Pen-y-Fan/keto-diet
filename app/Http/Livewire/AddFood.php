@@ -77,7 +77,6 @@ class AddFood extends Component implements Forms\Contracts\HasForms
 
     public function render(): \Illuminate\Contracts\View\View
     {
-        /** @phpstan-ignore-next-line */
         return view('livewire.add-food');
     }
 

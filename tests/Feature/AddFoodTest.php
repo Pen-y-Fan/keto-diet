@@ -53,7 +53,6 @@ class AddFoodTest extends TestCase
 
         $this->assertDatabaseHas('food', [
             'meal'     => $meal->value,
-            'date'     => $date,
             'name'     => 'New name',
             'calories' => '100',
             'carbs'    => '50',
@@ -117,7 +116,6 @@ class AddFoodTest extends TestCase
 
         $this->assertDatabaseHas('food', [
             'meal'     => $meal->value,
-            'date'     => $date,
             'name'     => 'New name',
             'calories' => '100',
             'carbs'    => '50',

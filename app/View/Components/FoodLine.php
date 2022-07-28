@@ -26,7 +26,6 @@ class FoodLine extends Component
      */
     public function render(): \Illuminate\Contracts\View\View
     {
-        /** @phpstan-ignore-next-line  */
         return view('components.food-line');
     }
 }

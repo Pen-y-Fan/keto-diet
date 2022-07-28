@@ -37,7 +37,6 @@ class Diary extends Component
 
     public function render(): \Illuminate\View\View
     {
-        /** @phpstan-ignore-next-line */
         return view('livewire.diary');
     }
 
