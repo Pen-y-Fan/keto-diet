@@ -8,9 +8,13 @@ use App\Enum\Meal;
 use App\Models\Food;
 use Carbon\Carbon;
 use Filament\Forms;
+use Filament\Notifications\Notification;
 use Livewire\Component;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * @property Forms\ComponentContainer $form
+ */
 class AddFood extends Component implements Forms\Contracts\HasForms
 {
     use Forms\Concerns\InteractsWithForms;
@@ -69,6 +73,13 @@ class AddFood extends Component implements Forms\Contracts\HasForms
                 ]
             )
         );
+
+        Notification::make()
+            ->title('Saved successfully')
+            ->body(sprintf('The food %s has been added.', $data['name']))
+            ->success()
+            ->seconds(5)
+            ->send();
 
         $this->redirect(route('diary', [
             'date' => $this->date->format('Y-m-d'),

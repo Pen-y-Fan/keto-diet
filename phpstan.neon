@@ -20,28 +20,28 @@ parameters:
     level: max
 
     ignoreErrors:
-#        - message: '#Cannot access property \$id on mixed#'
-#          path: app/Providers/RouteServiceProvider.php
+        - message: '#Parameter \#1 \$key of method Illuminate\\Cache\\RateLimiting\\Limit\:\:by\(\) expects string, int<min, \-1>\|int<1, max>\|string\|null given#'
+          path: app/Providers/RouteServiceProvider.php
 
 #        - message: '#Cannot call method when\(\) on mixed#'
 #          path: app/Filament/Resources/UserResource.php
 
-        - message: '#Parameter \#3 \$value of method Illuminate\\Database\\Eloquent\\Builder<Illuminate\\Database\\Eloquent\\Model>\:\:whereDate\(\) expects DateTimeInterface\|string\|null, mixed given#'
-          path: app/Filament/Resources/UserResource.php
+#        - message: '#Parameter \#3 \$value of method Illuminate\\Database\\Eloquent\\Builder<Illuminate\\Database\\Eloquent\\Model>\:\:whereDate\(\) expects DateTimeInterface\|string\|null, mixed given#'
+#          path: app/Filament/Resources/UserResource.php
 
         # phpstan is confused by view()
-        - message: '#Parameter \#1 \(array\|string\|null\) of echo cannot be converted to string#'
-          paths:
-            - app/Http/Livewire/Weight.php
-            - app/Http/Livewire/Dashboard.php
-            - routes/web.php
+#        - message: '#Parameter \#1 \(array\|string\|null\) of echo cannot be converted to string#'
+#          paths:
+#            - app/Http/Livewire/Weight.php
+#            - app/Http/Livewire/Dashboard.php
+#            - routes/web.php
 
         # phpstan is confused by tests, which are passing.
         - message: '#Cannot access property \$name on App\\Models\\Food\|null#'
           path: tests/Feature/FoodTest.php
 
-        - message: '#Access to an undefined property App\\Http\\Livewire\\AddFood\:\:\$form#'
-          path: app/Http/Livewire/AddFood.php
+#        - message: '#Access to an undefined property App\\Http\\Livewire\\AddFood\:\:\$form#'
+#          path: app/Http/Livewire/AddFood.php
 
         - message: '#Method App\\Enum\\Meal\:\:description\(\) should return string but returns mixed#'
           path: app/Enum/Meal.php

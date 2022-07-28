@@ -40,7 +40,7 @@
             </main>
         </div>
 
-{{--        @livewire('livewire-ui-modal')--}}
+        @livewire('notifications')
         @stack('modals')
     </body>
 </html>
