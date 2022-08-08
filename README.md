@@ -1,7 +1,7 @@
 # Keto diet
 
-This project concept is to design and build a small website which will record daily information about a keto diet. Based on
-MyFitnessPall, except much simpler and therefore easy to use. Accessible from any web connected device.
+This project concept is to design and build a small website which will record daily information about a keto diet. Based
+on MyFitnessPall, except much simpler and therefore easy to use. Accessible from any web connected device.
 [Filament PHP](https://filamentphp.com/) is used for the admin dashboard and authentication.
 
 The main features are:
@@ -35,7 +35,7 @@ local copy of this project on your computer.
 e.g.
 
 ```sh
-clone git@github.com:Pen-y-Fan/keto-diet.git
+git clone git@github.com:Pen-y-Fan/keto-diet.git
 ```
 
 ### Install
@@ -119,8 +119,8 @@ npm run watch
 
 ## Tooling
 
-Development tooling has been provided to keep the package to a high standard, including tests, code standard (PSR-12 + 
-other standards), static analysis. Other tools like IDE helper help with auto-completion and debug bar helps identify 
+Development tooling has been provided to keep the package to a high standard, including tests, code standard (PSR-12 +
+other standards), static analysis. Other tools like IDE helper help with auto-completion and debug bar helps identify
 problems like N+1 issues and which route or blade is being using.
 
 ### Code standard
@@ -217,9 +217,9 @@ Tests: 53, Assertions: 142, Skipped: 7.
 
 ### Automatic PHPDocs
 
-To help IDE autocompletion automatic PHPDocs for models are created using barryvdh/laravel-ide-helper, which has been 
-installed to help with IDE auto-completion, when new models are created run the following to auto generate doc blocks 
-for all the models: 
+To help IDE autocompletion automatic PHPDocs for models are created using barryvdh/laravel-ide-helper, which has been
+installed to help with IDE auto-completion, when new models are created run the following to auto generate doc blocks
+for all the models:
 
 ```shell
 php artisan ide-helper:models -W
@@ -233,7 +233,7 @@ php artisan ide-helper:models -W "App\Models\Post"
 
 ## Filament admin
 
-The [Filament admin](https://filamentphp.com/) has been installed to all the data in all the models. To access the 
+The [Filament admin](https://filamentphp.com/) has been installed to all the data in all the models. To access the
 Filament dashboard you will need to create a filament user:
 
 ```shell
@@ -275,7 +275,7 @@ MIT License (MIT). Please see [License File](LICENSE.md) for more information.
     - [x] .editorconfig
 - [x] Install Filament admin
 - [x] Install Jetstream and Livewire
-- [ ] App outline, a user can: 
+- [ ] App outline, a user can:
     - [x] view a daily diary
     - [x] add food to a meal
     - [x] view their meals (daily diary)

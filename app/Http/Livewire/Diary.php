@@ -51,7 +51,7 @@ class Diary extends Component
     {
         $this->date = ($this->date instanceof Carbon) ? $this->date : now();
 
-        $this->day = $this->date->format('l jS \\of F Y');
+        $this->day = (clone $this->date)->format('l jS \\of F Y');
 
         /** @var User $user */
         $user                = auth()->user();
